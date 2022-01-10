@@ -9,23 +9,16 @@ function loadData($fileName)
 
 function saveDataJson($fileName, $name, $email, $phone)
 {
-    try {
         $contact = array(
             'name' => $name,
             'email' => $email,
             'phone' => $phone,
         );
-
         $data = loadData($fileName); // chuyển từ json sang mảng
         array_push($data, $contact); // thêm dữ liệu vào mảng
         $dataJson = json_encode($data, JSON_PRETTY_PRINT); //Chuyển đổi mảng đã cập nhập thành json ( JSON_PRETTY_PRINT để clear code )
         file_put_contents($fileName, $dataJson); // Ghi dữ liệu vào file
         echo "Upload Thành Công";
-    } catch (Exception $e) {
-        echo 'Lỗi: ', $e->getMessage(), "\n";
-    }
-
-
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
